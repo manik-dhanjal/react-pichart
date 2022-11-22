@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components';
+import PiChart from './components/pi-chart.components';
+import './App.css'
+import Slider from './components/slider.components';
+import react, {useState} from 'react';
+
+const Styles = styled.div`
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+min-height:100vh;
+`
+
 
 function App() {
+  const [value, setValue] = useState(0);
+  const handleChange = (newVal) => {
+    setValue(newVal)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Styles>
+      <PiChart curValue={value}/>
+      <Slider curValue ={value} onChange={handleChange}/>
+    </Styles>
   );
 }
 
